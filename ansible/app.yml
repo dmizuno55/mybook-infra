@@ -1,0 +1,8 @@
+---
+- name: Setup webserver
+  become: yes
+  hosts: new_instances
+  roles:
+    - common
+    - nginx
+    - webapp

@@ -1,0 +1,14 @@
+---
+- name: Install virtualenv
+  pip: >
+    name=virtualenv
+    state=present
+
+- name: Create the virtualenv
+  command: "virtualenv -p {{ virtualenv_python_version }} {{ virtualenv_path }}"
+
+- name: Change owner virtualenv
+  command: "chown -R {{ application_group }}:{{ application_user }} {{ virtualenv_path }}"
+
+- name: Activate virtualenv
+  shell: /bin/bash -c "source {{ virtualenv_path }}/bin/activate"

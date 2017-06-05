@@ -1,0 +1,5 @@
+---
+common_timezone: Asia/Tokyo
+common_locale: ja_JP.UTF-8
+application_group: apps_user
+application_user: apps_user

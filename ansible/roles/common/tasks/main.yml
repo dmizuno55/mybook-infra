@@ -1,0 +1,31 @@
+---
+- name: Set the timezone
+  timezone:
+    name: "{{ common_timezone }}"
+
+- name: Generate the locale
+  locale_gen:
+    name: "{{ common_locale }}"
+    state: present
+
+- name: Install common packages
+  apt: >
+    name={{ item }}
+    state=latest
+  with_items:
+    - git
+    - python3
+    - python3-dev
+    - python-pip
+
+- name: Create application group
+  group: >
+    name={{ application_group }}
+    gid=30002
+
+- name: Create application user user
+  user: >
+    name={{ application_user }}
+    group={{ application_group }}
+    uid=30002
+    shell=/bin/bash
