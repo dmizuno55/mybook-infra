@@ -1,4 +1,15 @@
 ---
+- name: Create nginx group
+  group: >
+    name=nginx
+
+- name: Create nginx user
+  user: >
+    name=nginx
+    group=nginx
+    createhome=no
+    shell=/bin/bash
+
 - name: Install nginx
   apt: >
     name=nginx

@@ -23,7 +23,7 @@
     name={{ application_group }}
     gid=30002
 
-- name: Create application user user
+- name: Create application user
   user: >
     name={{ application_user }}
     group={{ application_group }}

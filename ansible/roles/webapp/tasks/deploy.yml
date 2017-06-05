@@ -3,22 +3,22 @@
   file: >
     path={{ item }}
     state=directory
-    mode=644
+    mode=4644
     owner="{{ application_user }}"
     group="{{ application_group }}"
   with_items:
-    - /usr/local/webapp
-    - /usr/local/webapp/logs
+    - "{{ application_base }}"
+    - "{{ application_base }}/logs"
 
-- name: Get server source
+- name: Get source
   git:
     repo: "{{ server_git_repository }}"
     dest: "{{ application_root }}"
 
-- name: Change owner server source
-  command: "chown -R {{ application_group }}:{{ application_user }} {{ application_root }}"
+- name: Change owner
+  command: "chown -R {{ application_group }}:{{ application_user }} {{ application_base }}"
 
-- name: Build server source
+- name: Build source
   pip: >
     virtualenv={{ virtualenv_path }}
     requirements={{ application_root }}/requirements.txt
