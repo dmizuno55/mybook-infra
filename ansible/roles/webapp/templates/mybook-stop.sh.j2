@@ -1,0 +1,22 @@
+#!/bin/bash
+APP_ROOT="{{ application_root }}"
+APP_USER="{{ application_user }}"
+PIDFILE="/tmp/mybook.pid"
+
+exec_user=$(whoami)
+
+if [ "x${exec_user}" != "x${APP_USER}" ]; then
+  echo "execution user must be ${APP_USER}."
+  exit 1
+fi
+
+if [ ! -f ${PIDFILE} ]; then
+  echo "mybook is not running."
+  exit 1
+fi
+
+kill -9 $(cat ${PIDFILE})
+
+rm ${PIDFILE}
+
+echo "mybook is stoped."

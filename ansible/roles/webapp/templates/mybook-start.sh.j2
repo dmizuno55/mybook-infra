@@ -1,0 +1,17 @@
+#!/bin/bash
+APP_ROOT="{{ application_root }}"
+APP_USER="{{ application_user }}"
+VIRTUALENV_PATH="{{ virtualenv_path }}"
+
+exec_user=$(whoami)
+
+if [ "x${exec_user}" != "x${APP_USER}" ]; then
+  echo "execution user must be ${APP_USER}."
+  exit 1
+fi
+
+source ${VIRTUALENV_PATH}/bin/activate
+
+uwsgi --ini ${APP_ROOT}/uwsgi.ini
+
+echo "mybook is started."

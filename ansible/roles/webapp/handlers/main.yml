@@ -1,5 +1,0 @@
----
-- name: restart app
-  command: "uwsgi --ini uwsgi.ini"
-  args:
-    chdir: "{{ application_root }}"

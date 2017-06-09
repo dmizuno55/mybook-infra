@@ -1,4 +1,4 @@
-user  nginx;
+user www-data;
 worker_processes  auto;
 
 error_log  /var/log/nginx/error.log warn;
@@ -26,4 +26,19 @@ http {
     #gzip  on;
 
     include /etc/nginx/conf.d/*.conf;
+
+    server {
+      listen      80;
+      server_name mybook.net;
+      location / {
+        root  /usr/local/webapp/stat;
+        index index.html;
+        allow all;
+      }
+
+      proxy_set_header Host $http_host;
+      location /api {
+        proxy_pass http://127.0.0.1:8000/api;
+      }
+    }
 }

@@ -1,15 +1,17 @@
 # env
 python: 2.7.10
 
-# link
-https://cloud.google.com/deployment-manager/docs/quickstart
+# create instance
+```
+./startup.sh vm-mybook vm-mybook-image
+```
 
-# usage
-gcloud deployment-manager deployments create mybook --config vm.yaml
+# current instance save as image
+```
+./save.sh vm-mybook
+```
 
-gcloud deployment-manager deployments describe mybook
-gcloud deployment-manager manifests describe manifest-[TIMESTAMP] --deployment mybook
-
-gcloud deployment-manager deployments delete mybook
-
-
+# delete instance
+```
+gcloud compute instances remove vm-mybook
+```

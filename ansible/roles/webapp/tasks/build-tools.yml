@@ -1,0 +1,22 @@
+---
+- name: Setup node.js repository
+  shell: 'curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -'
+
+- name: Install node.js package
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=yes
+  with_items:
+    - nodejs=4.8.3-1nodesource1~jessie1
+    - build-essential
+
+- name: Install build script
+  template: >
+    src="{{ item }}.j2"
+    dest="/usr/local/bin/{{ item }}"
+    owner={{ application_user }}
+    group={{ application_group }}
+    mode=0744
+  with_items:
+    - mybook-release.sh

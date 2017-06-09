@@ -2,8 +2,8 @@ resources:
 - type: compute.v1.instance
   name: vm-mybook
   properties:
-    zone: asia-east1-a
-    machineType: https://www.googleapis.com/compute/v1/projects/clear-apogee-815/zones/asia-east1-a/machineTypes/f1-micro
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/clear-apogee-815/zones/us-central1-a/machineTypes/f1-micro
     disks:
     - deviceName: boot
       type: PERSISTENT

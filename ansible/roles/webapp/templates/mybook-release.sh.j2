@@ -1,0 +1,40 @@
+#!/bin/bash
+APP_SERVER_REPOS="{{ server_git_repository }}"
+APP_CLIENT_REPOS="{{ client_git_repository }}"
+APP_ROOT="{{ application_root }}"
+APP_USER="{{ application_user }}"
+VIRTUALENV_PATH="{{ virtualenv_path }}"
+APP_CLIENT_BUILD_TMP=/tmp/mybook-client-build
+
+exec_user=$(whoami)
+
+if [ "x${exec_user}" != "x${APP_USER}" ]; then
+  echo "execution user must be ${APP_USER}."
+  exit 1
+fi
+
+if [ -d ${APP_ROOT} ]; then
+  rm -rf ${APP_ROOT}
+fi
+
+# build server
+git clone ${APP_SERVER_REPOS} ${APP_ROOT}
+
+source ${VIRTUALENV_PATH}/bin/activate
+
+pip install -r ${APP_ROOT}/requirements.txt
+
+# build client
+if [ -d ${APP_CLIENT_BUILD_TMP} ]; then
+  rm -rf ${APP_CLIENT_BUILD_TMP}
+fi
+
+git clone ${APP_CLIENT_REPOS} ${APP_CLIENT_BUILD_TMP}
+
+cd ${APP_CLIENT_BUILD_TMP}
+
+npm i
+
+npm run build
+
+cp -r ${APP_CLIENT_BUILD_TMP}/dest/* ${APP_ROOT}/stat
