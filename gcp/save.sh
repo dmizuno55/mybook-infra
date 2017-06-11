@@ -1,4 +1,7 @@
 # !/usr/local//bin/zsh
+
+# Warn!! Saved image is not free.
+
 BASE_NAME=$1
 SNAPSHOT_NAME=${BASE_NAME}-snapshot
 DISK_NAME=${BASE_NAME}-disks
