@@ -1,0 +1,4 @@
+---
+application_name: "mybook"
+application_base: "/usr/local/webapp"
+application_root: "{{ application_base }}/{{ application_name }}"

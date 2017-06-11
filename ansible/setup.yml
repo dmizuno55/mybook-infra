@@ -2,7 +2,10 @@
 - name: Setup webserver
   become: yes
   hosts: new_instances
+  gather_facts: no
   roles:
     - common
     - nginx
-    - webapp
+    - python3
+    - mybook
+    - mybook-dev

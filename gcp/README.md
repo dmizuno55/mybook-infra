@@ -14,5 +14,5 @@ python: 2.7.x
 
 # delete instance
 ```
-gcloud compute instances remove [instance name]
+gcloud compute instances delete [instance name]
 ```

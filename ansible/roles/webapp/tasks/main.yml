@@ -1,5 +1,0 @@
----
-- include: virtualenv.yml
-- include: build-tools.yml
-- include: service.yml
-# - include: deploy.yml

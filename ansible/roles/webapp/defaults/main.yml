@@ -1,9 +1,0 @@
----
-application_name: "mybook"
-virtualenv_python_version: python3
-virtualenv_path: "/home/{{ application_user }}/.virtualenv/{{ application_name }}"
-application_base: "/usr/local/webapp"
-application_root: "{{ application_base }}/{{ application_name }}"
-
-server_git_repository: https://github.com/dmizuno55/mybook.git
-client_git_repository: https://github.com/dmizuno55/mybook-client.git

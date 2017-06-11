@@ -1,6 +1,7 @@
 #!/bin/bash
 APP_SERVER_REPOS="{{ server_git_repository }}"
 APP_CLIENT_REPOS="{{ client_git_repository }}"
+APP_BASE="{{ application_base }}"
 APP_ROOT="{{ application_root }}"
 APP_USER="{{ application_user }}"
 VIRTUALENV_PATH="{{ virtualenv_path }}"
@@ -37,4 +38,4 @@ npm i
 
 npm run build
 
-cp -r ${APP_CLIENT_BUILD_TMP}/dest/* ${APP_ROOT}/stat
+cp -r ${APP_CLIENT_BUILD_TMP}/static/* ${APP_BASE}/stat

@@ -1,6 +1,18 @@
 ---
+- name: Make app directory
+  file: >
+    path={{ item }}
+    state=directory
+    mode=4774
+    owner="{{ application_user }}"
+    group="{{ application_group }}"
+  with_items:
+    - "{{ application_base }}"
+    - "{{ application_base }}/logs"
+    - "{{ application_base }}/stat"
+
 - name: Setup node.js repository
-  shell: 'curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -'
+  shell: 'curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -'
 
 - name: Install node.js package
   apt: >
@@ -8,7 +20,7 @@
     state=present
     update_cache=yes
   with_items:
-    - nodejs=4.8.3-1nodesource1~jessie1
+    - nodejs=6.11.0-1nodesource1~jessie1
     - build-essential
 
 - name: Install build script
