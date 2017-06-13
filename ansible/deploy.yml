@@ -8,16 +8,18 @@
       become: yes
       become_method: sudo
       become_user: apps_user
-      shell: '/usr/local/bin/mybook-release.sh'
+      shell: "/usr/local/bin/mybook-release.sh"
 
     - name: Stop service
       become: yes
       become_method: sudo
       become_user: apps_user
-      shell: '/usr/local/bin/mybook-stop.sh'
+      shell: "/usr/local/bin/mybook-stop.sh"
+      register: stop_status
+      failed_when: "stop_status.rc > 0 and 'is not running.' not in stop_status.stdout"
 
     - name: Start service
       become: yes
       become_method: sudo
       become_user: apps_user
-      shell: '/usr/local/bin/mybook-start.sh'
+      shell: "/usr/local/bin/mybook-start.sh"
